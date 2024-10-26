@@ -5,54 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firebase Data Display</title>
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
-        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"; // Import necessary database functions
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"; // Import necessary database functions
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBC1L-dtjQXEebKShlfeZdEcbaqdVnd8Sc",
-            authDomain: "computernetowrk-d0548.firebaseapp.com",
-            databaseURL: "https://computernetowrk-d0548-default-rtdb.firebaseio.com",
-            projectId: "computernetowrk-d0548",
-            storageBucket: "computernetowrk-d0548.appspot.com",
-            messagingSenderId: "998610150229",
-            appId: "1:998610150229:web:4be217660084db7cec05dc",
-            measurementId: "G-TG070X5E3B"
-        };
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBC1L-dtjQXEebKShlfeZdEcbaqdVnd8Sc",
+    authDomain: "computernetowrk-d0548.firebaseapp.com",
+    databaseURL: "https://computernetowrk-d0548-default-rtdb.firebaseio.com",
+    projectId: "computernetowrk-d0548",
+    storageBucket: "computernetowrk-d0548.appspot.com",
+    messagingSenderId: "998610150229",
+    appId: "1:998610150229:web:4be217660084db7cec05dc",
+    measurementId: "G-TG070X5E3B"
+};
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const database = getDatabase(app); // Get a reference to the database
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const database = getDatabase(app); // Get a reference to the database
 
-        function fetchData() {
-            const dataRef = ref(database, 'sensor'); // Create a reference to the 'sensor' node
-            get(dataRef)
-                .then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const data = snapshot.val();
-                        displayData(data);
-                    } else {
-                        console.log("No data available");
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error fetching data:', error);
-                });
+function fetchData() {
+    const dataRef = ref(database, 'sensor'); // Create a reference to the 'sensor' node
+    onValue(dataRef, (snapshot) => { // Use onValue for real-time updates
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            displayData(data);
+        } else {
+            console.log("No data available");
         }
+    }, (error) => {
+        console.error('Error fetching data:', error);
+    });
+}
 
-        function displayData(data) {
-            const contentDiv = document.getElementById('content');
-            contentDiv.innerHTML = ''; // Clear previous content
-            for (let key in data) {
-                const item = data[key];
-                contentDiv.innerHTML += `<p>${item}</p>`; // Display each item
-            }
-        }
+function displayData(data) {
+    const contentDiv = document.getElementById('content');
+    contentDiv.innerHTML = ''; // Clear previous content
+    for (let key in data) {
+        const item = data[key];
+        contentDiv.innerHTML += `<p>${item}</p>`; // Display each item
+    }
+}
 
-        document.addEventListener('DOMContentLoaded', fetchData);
+document.addEventListener('DOMContentLoaded', fetchData);
+
     </script>
 </head>
 <body>
