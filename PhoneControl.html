@@ -37,11 +37,14 @@
             try {
                 // Request Bluetooth device
                 device = await navigator.bluetooth.requestDevice({
-                    filters: [{ services: ['battery_service'] }] // Change to your device's service
+                    // Use the service UUID your device actually supports
+                    filters: [{ services: ['<YOUR_DEVICE_SERVICE_UUID>'] }] // Change to your device's service
                 });
 
                 const server = await device.gatt.connect();
-                characteristic = await server.getPrimaryService('battery_service').getCharacteristic('battery_level'); // Change to your characteristic
+                // Replace 'battery_service' and 'battery_level' with your specific service and characteristic
+                const service = await server.getPrimaryService('<YOUR_DEVICE_SERVICE_UUID>');
+                characteristic = await service.getCharacteristic('<YOUR_CHARACTERISTIC_UUID>');
 
                 document.getElementById('status').textContent = 'Connected to the device!';
 
