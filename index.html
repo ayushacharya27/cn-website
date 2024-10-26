@@ -3,20 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Welcome to My Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
             background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+        header {
+            background: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
         }
         h1 {
-            color: #333;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav {
+            margin: 20px 0;
         }
         nav ul {
             list-style-type: none;
             padding: 0;
+            text-align: center;
         }
         nav ul li {
             display: inline;
@@ -25,21 +37,33 @@
         nav ul li a {
             text-decoration: none;
             color: #007bff;
+            font-weight: bold;
         }
         nav ul li a:hover {
             text-decoration: underline;
         }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
+    <header>
+        <h1>Welcome to My Website</h1>
+    </header>
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="Data.html">Page 1</a></li>
             <li><a href="Transmitter.html">Page 2</a></li>
-            <li><a href="Reciever.html">Page 3</a></li> <!-- Corrected spelling -->
+            <li><a href="Receiver.html">Page 3</a></li> <!-- Corrected spelling -->
         </ul>
     </nav>
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
 </body>
 </html>
