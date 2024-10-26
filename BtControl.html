@@ -26,9 +26,8 @@
             color: white;
             border: none;
             border-radius: 5px;
-            margin: 10px;
             padding: 10px 15px;
-            font-size: 16px;
+            font-size: 20px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -36,110 +35,40 @@
             background-color: #0056b3;
         }
         .button-container {
-            display: flex;
+            display: grid;
+            grid-template-areas:
+                " . straight . "
+                "left . right"
+                " . reverse . ";
+            gap: 20px;
             justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 30px;
         }
-        @media (max-width: 600px) {
-            button {
-                width: 100%;
-                margin: 5px 0;
-            }
+        .button-container button {
+            min-width: 100px;
+            padding: 15px;
         }
+        .straight { grid-area: straight; }
+        .left { grid-area: left; }
+        .reverse { grid-area: reverse; }
+        .right { grid-area: right; }
     </style>
 </head>
 <body>
 
-    <h1>Serial Communication with COM Port</h1>
-    <p id="status">Status: Disconnected</p>
+    <h1>Control Through Website</h1>
+    <p id="status"><strong><i>Status: Disconnected</i></strong></p>
     <button id="connectButton">Connect to COM Port</button>
 
     <div class="button-container">
-        <button class="sendButton" data-value="w">Send "w"</button>
-        <button class="sendButton" data-value="a">Send "a"</button>
-        <button class="sendButton" data-value="s">Send "s"</button>
-        <button class="sendButton" data-value="d">Send "d"</button>
+        <button class="sendButton straight" data-value="w">Straight</button>
+        <button class="sendButton left" data-value="a">Left</button>
+        <button class="sendButton reverse" data-value="s">Reverse</button>
+        <button class="sendButton right" data-value="d">Right</button>
     </div>
 
-    <script>
-        let port;
-        let defaultSendingInterval; // Interval for sending default "n"
-        let currentKeyData; // Data to send based on button pressed
-
-        document.getElementById('connectButton').addEventListener('click', async () => {
-            try {
-                port = await navigator.serial.requestPort();
-                await port.open({ baudRate: 9600 });
-                document.getElementById('status').textContent = 'Connected to the COM port!';
-
-                // Start sending default "n" when connected
-                startDefaultSending();
-
-                // Add event listeners for button presses
-                document.querySelectorAll('.sendButton').forEach(button => {
-                    button.addEventListener('mousedown', startSendingKey);
-                    button.addEventListener('mouseup', stopSendingKey);
-                    button.addEventListener('mouseleave', stopSendingKey); // Stop sending if mouse leaves the button
-                });
-
-            } catch (error) {
-                console.error('Error connecting to the serial port:', error);
-                document.getElementById('status').textContent = 'Failed to connect to the COM port.';
-            }
-        });
-
-        function startSendingKey(event) {
-            if (!port) return; // If not connected, do nothing
-
-            // Stop sending default "n" when a button is pressed
-            stopDefaultSending();
-
-            // Set current key data based on button pressed
-            currentKeyData = event.target.getAttribute('data-value');
-
-            // Immediately send the character when the button is pressed
-            sendData(currentKeyData);
-        }
-
-        function stopSendingKey(event) {
-            // Clear sending interval if it's active
-            currentKeyData = null; // Reset currentKeyData
-
-            // Restart sending default "n" when no button is pressed
-            startDefaultSending();
-        }
-
-        async function sendData(data) {
-            if (!port) return; // If not connected, do nothing
-            const encoder = new TextEncoder();
-            const writer = port.writable.getWriter();
-            try {
-                await writer.write(encoder.encode(data + '\n'));
-                document.getElementById('status').textContent = `Sent: "${data}"`;
-            } catch (error) {
-                console.error('Error writing to serial port:', error);
-                document.getElementById('status').textContent = 'Failed to send data.';
-            } finally {
-                writer.releaseLock(); // Release the lock after writing
-            }
-        }
-
-        function startDefaultSending() {
-            if (!port) return; // If not connected, do nothing
-            if (defaultSendingInterval) return; // If already sending "n", do nothing
-
-            defaultSendingInterval = setInterval(async () => {
-                await sendData('n'); // Send default "n" every second
-            }, 10); // Send "n" every second
-        }
-
-        function stopDefaultSending() {
-            if (defaultSendingInterval) {
-                clearInterval(defaultSendingInterval); // Stop sending "n"
-                defaultSendingInterval = null; // Reset the interval
-            }
-        }
-    </script>
+    <script src="BtControl.js"></script>
 
 </body>
 </html>
