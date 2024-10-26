@@ -3,11 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Page</title>
-    <link rel="stylesheet" href="Data.css"> <!-- Link to the CSS file -->
+    <title>Firebase Data Display</title>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBC1L-dtjQXEebKShlfeZdEcbaqdVnd8Sc",
+    authDomain: "computernetowrk-d0548.firebaseapp.com",
+    databaseURL: "https://computernetowrk-d0548-default-rtdb.firebaseio.com",
+    projectId: "computernetowrk-d0548",
+    storageBucket: "computernetowrk-d0548.appspot.com",
+    messagingSenderId: "998610150229",
+    appId: "1:998610150229:web:4be217660084db7cec05dc",
+    measurementId: "G-TG070X5E3B"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+        const database = firebase.database();
+
+        function fetchData() {
+            const dataRef = database.ref('sensor');
+            dataRef.once('value')
+                .then((snapshot) => {
+                    const data = snapshot.val();
+                    displayData(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        function displayData(data) {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = '';
+            for (let key in data) {
+                const item = data[key];
+                contentDiv.innerHTML += `<p>${item}</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchData);
+    </script>
 </head>
 <body>
-    
-    
+    <h1>Firebase Data Display</h1>
+    <div id="content"></div> <!-- This is where the data will be displayed -->
 </body>
 </html>
