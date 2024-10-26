@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluetooth Serial Communication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bluetooth Communication</h1>
+    <button id="connectButton">Connect to Device</button>
+    <p id="status">Status: Disconnected</p>
+
+    <div>
+        <button class="sendButton" data-value="w">Send "w"</button>
+        <button class="sendButton" data-value="a">Send "a"</button>
+        <button class="sendButton" data-value="s">Send "s"</button>
+        <button class="sendButton" data-value="d">Send "d"</button>
+    </div>
+
+    <script>
+        let device;
+        let characteristic;
+
+        document.getElementById('connectButton').addEventListener('click', async () => {
+            try {
+                // Request Bluetooth device
+                device = await navigator.bluetooth.requestDevice({
+                    filters: [{ services: ['battery_service'] }] // Change to your device's service
+                });
+
+                const server = await device.gatt.connect();
+                characteristic = await server.getPrimaryService('battery_service').getCharacteristic('battery_level'); // Change to your characteristic
+
+                document.getElementById('status').textContent = 'Connected to the device!';
+
+                // Add event listeners for button presses
+                document.querySelectorAll('.sendButton').forEach(button => {
+                    button.addEventListener('click', () => sendData(button.getAttribute('data-value')));
+                });
+
+            } catch (error) {
+                console.error('Error connecting to Bluetooth device:', error);
+                document.getElementById('status').textContent = 'Failed to connect to the device.';
+            }
+        });
+
+        async function sendData(data) {
+            if (!characteristic) return; // If not connected, do nothing
+            
+            // Encode the data as a Uint8Array
+            const encoder = new TextEncoder();
+            const value = encoder.encode(data + '\n');
+            
+            try {
+                await characteristic.writeValue(value);
+                document.getElementById('status').textContent = `Sent: "${data}"`;
+            } catch (error) {
+                console.error('Error writing to Bluetooth device:', error);
+                document.getElementById('status').textContent = 'Failed to send data.';
+            }
+        }
+    </script>
+
+</body>
+</html>
