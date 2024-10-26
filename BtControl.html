@@ -7,22 +7,54 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4a4a4a;
+        }
+        #status {
+            text-align: center;
+            font-size: 18px;
+            margin: 20px 0;
         }
         button {
-            margin: 5px;
-            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px 15px;
             font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 600px) {
+            button {
+                width: 100%;
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
 <body>
 
     <h1>Serial Communication with COM Port</h1>
-    <button id="connectButton">Connect to COM Port</button>
     <p id="status">Status: Disconnected</p>
+    <button id="connectButton">Connect to COM Port</button>
 
-    <div>
+    <div class="button-container">
         <button class="sendButton" data-value="w">Send "w"</button>
         <button class="sendButton" data-value="a">Send "a"</button>
         <button class="sendButton" data-value="s">Send "s"</button>
@@ -98,7 +130,7 @@
 
             defaultSendingInterval = setInterval(async () => {
                 await sendData('n'); // Send default "n" every second
-            }, 1); // Send "n" every second
+            }, 10); // Send "n" every second
         }
 
         function stopDefaultSending() {
