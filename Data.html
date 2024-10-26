@@ -45,7 +45,7 @@ function displayData(data) {
     contentDiv.innerHTML = ''; // Clear previous content
     for (let key in data) {
         const item = data[key];
-        contentDiv.innerHTML += `<p>${item}</p>`; // Display each item
+        contentDiv.innerHTML +=  `<p><strong>${key}:</strong> ${item}</p>`; // Display each item
     }
 }
 
