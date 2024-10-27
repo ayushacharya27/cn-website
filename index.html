@@ -3,96 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computer Networks</title>
+    <title>Landing Page</title>
     <style>
+        /* Reset default margins and paddings */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        /* Body styling */
         body {
+            background-color: black;
+            color: white;
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        header {
-            background: #007bff;
-            color: #fff;
-            width: 100%;
-            padding: 10px 0;
-            text-align: center;
-        }
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        nav {
-            width: 100%;
-            text-align: center;
-            margin: 20px 0;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 15px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-        }
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-        .image-container {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            overflow: hidden;
-            width: 100%;
+            min-height: 100vh;
         }
-        .image-container img {
+
+        /* Header navigation */
+        header {
             width: 90%;
-            height: 85vh; /* Makes the image occupy almost the entire viewport height */
-            object-fit: cover;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        footer {
+
+        /* Navigation links styling */
+        nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Main text styling */
+        .main-text {
             text-align: center;
-            padding: 10px 0;
-            background-color: #f4f4f4;
-            width: 100%;
+            font-size: 48px;
+            font-weight: bold;
+            margin-top: 50px;
+            line-height: 1.2;
         }
-        footer p {
-            font-size: 0.9em;
-            color: #666;
+
+        /* Subtext container */
+        .subtext-container {
+            display: flex;
+            flex-direction: column; /* Stack text vertically */
+            align-items: center; /* Center align the text */
+            width: 80%;
+            max-width: 900px;
+            margin-top: 30px;
+            padding: 20px; /* Add padding */
+            /* Background color removed to keep it black */
+        }
+
+        /* Subtext styling */
+        .subtext-container div {
+            width: 100%; /* Full width for stacking */
+            text-align: center; /* Center align text */
+            margin: 10px 0; /* Space between the two text blocks */
+            font-size: 22px;
+            line-height: 1.5;
+        }
+
+        /* Additional spacing for the italicized text */
+        .subtext-container div:first-child {
+            margin-bottom: 20px; /* Add spacer between the two divs */
         }
     </style>
 </head>
 <body>
+
+    <!-- Header with navigation links -->
     <header>
-        <h1>Welcome To our Project</h1>
+        <div style="font-size: 24px; font-weight: bold; flex-grow: 1;">WORKIFY</div>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="Data.html">Monitor</a>
+            <a href="BtControl.html">Control</a>
+            <a href="ShowPhoto.html">Realtime</a>
+            <a href="Transmitter.html">Transmit</a>
+            <a href="Recieve.html">Receiver</a>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="Data.html">Data Viewing</a></li>
-            <li><a href="Transmitter.html">Control Your Bot</a></li>
-            <li><a href="Reciever.html">Receive Commands</a></li>
-            <li><a href="BtControl.html">Bluetooth Control</a></li>
-            <li><a href="ShowPhoto.html">Realtime Monitoring</a></li>
-        </ul>
-    </nav>
-    <div class="image-container">
-        <img src="CN1.jpg" alt="Project Image"> <!-- Update with your image path -->
+
+    <!-- Main content text -->
+    <div class="main-text">
+        Transform your workspace for a safer, brighter future.
     </div>
-    <footer>
-        <p>&copy; 2024 Ayush Acharya. All rights reserved.</p>
-    </footer>
+
+    <!-- Subtext below the main content -->
+    <div class="subtext-container">
+        <div><i>WORKIFY is your ultimate workspace management tool, supporting both in-office and remote work environments.</i></div>
+        <div>Developed under the guidance of Professor Sudha A, this project aims to enhance productivity through innovative management solutions.</div>
+    </div>
+
 </body>
 </html>

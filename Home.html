@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Networks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        header {
+            background: #007bff;
+            color: #fff;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav {
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        .image-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            width: 100%;
+        }
+        .image-container img {
+            width: 90%;
+            height: 85vh; /* Makes the image occupy almost the entire viewport height */
+            object-fit: cover;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f4f4f4;
+            width: 100%;
+        }
+        footer p {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome To our Project</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="Data.html">Data Viewing</a></li>
+            <li><a href="Transmitter.html">Control Your Bot</a></li>
+            <li><a href="Reciever.html">Receive Commands</a></li>
+            <li><a href="BtControl.html">Bluetooth Control</a></li>
+            <li><a href="ShowPhoto.html">Realtime Monitoring</a></li>
+        </ul>
+    </nav>
+    <div class="image-container">
+        <img src="CN1.jpg" alt="Project Image"> <!-- Update with your image path -->
+    </div>
+    <footer>
+        <p>&copy; 2024 Ayush Acharya. All rights reserved.</p>
+    </footer>
+</body>
+</html>
