@@ -8,17 +8,23 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0; /* Remove default margin */
             background-color: #f4f4f4;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column; /* Arrange children vertically */
         }
         #photos {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            flex-grow: 1; /* Take up remaining space */
+            overflow-y: auto; /* Allow vertical scrolling if needed */
+            padding: 20px; /* Optional padding */
         }
         .photo {
-            width: 200px;
-            height: 150px;
+            width: 800px;
+            height: 800px; /* Corrected height property */
             overflow: hidden;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -27,10 +33,33 @@
             width: 100%;
             height: auto;
         }
+        .container {
+            padding: 20px; /* Optional padding */
+        }
+        .my-button {
+            font-size: 22px; /* Font size */
+            color: white; /* Text color */
+            background-color: #007BFF; /* Bootstrap primary color */
+            border: none; /* No border */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.2s; /* Transition effect */
+            width: 20%; /* Full width of the grid cell */
+            height: 60px; /* Set a specific height for the button */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
+        }
+        .my-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slightly lift button on hover */
+        }
     </style>
 </head>
 <body>
     <h1><strong><i>Realtime Monitoring</i></strong></h1>
     <div id="photos"></div> <!-- Container for displaying photos -->
+    <div class="container">
+        <button id="deleteButton" class="my-button">Delete History</button>
+
+    </div>
 </body>
 </html>

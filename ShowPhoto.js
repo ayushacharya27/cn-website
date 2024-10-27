@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js"; // Import necessary storage functions
+import { getStorage, ref, listAll, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js"; // Import necessary storage functions
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,6 +17,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
+// Function to delete all photos in the 'snapshots' folder
+async function DeleteAll() {
+    const storageRef = ref(storage, 'snapshots/'); // Reference to the 'snapshots' folder
+    try {
+        const result = await listAll(storageRef); // List all items in the folder
+        const deletePromises = result.items.map(item => {
+            return deleteObject(item); // Delete each file
+        });
+        await Promise.all(deletePromises); // Wait for all deletions to complete
+        console.log("All files deleted successfully.");
+        alert("All files deleted successfully.");
+    } catch (error) {
+        console.error("Error deleting files:", error);
+        alert("Error deleting files: " + error.message);
+    }
+}
+
+// Function to fetch the latest photo from Firebase Storage
 async function fetchLatestPhoto() {
     const storageRef = ref(storage, 'snapshots/'); // Reference to the 'snapshots' folder
     const result = await listAll(storageRef); // List all items in the folder
@@ -39,6 +57,15 @@ async function fetchLatestPhoto() {
     }
 }
 
+// Attach the DeleteAll function to the delete button
+function setupButton() {
+    const deleteButton = document.getElementById('deleteButton');
+    deleteButton.addEventListener('click', DeleteAll);
+}
+
 // Fetch photos every 10 seconds
 setInterval(fetchLatestPhoto, 10000); // Fetch the latest photo every 10 seconds
-document.addEventListener('DOMContentLoaded', fetchLatestPhoto); // Fetch the latest photo on page load
+document.addEventListener('DOMContentLoaded', () => {
+    fetchLatestPhoto(); // Fetch the latest photo on page load
+    setupButton(); // Setup the delete button
+});
