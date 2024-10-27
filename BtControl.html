@@ -21,38 +21,47 @@
             font-size: 18px;
             margin: 20px 0;
         }
-        button {
+        #connectButton {
+            display: block;
+            margin: 0 auto; /* Center the button */
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
-            padding: 10px 15px;
-            font-size: 20px;
+            padding: 12px 18px; /* Increased padding for larger button */
+            font-size: 22px; /* Increased font size */
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        button:hover {
+        #connectButton:hover {
             background-color: #0056b3;
         }
         .button-container {
             display: grid;
-            grid-template-areas:
-                " . straight . "
-                "left . right"
-                " . reverse . ";
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 30px;
+            grid-template-columns: repeat(3, 1fr); /* Three columns for the WASD layout */
+            grid-template-rows: repeat(3, 1fr); /* Three rows for the WASD layout */
+            gap: 15px; /* Space between buttons */
+            width: 80%; /* Occupy 80% of the page width */
+            height: 80%; /* Adjust height as needed */
+            margin: 30px auto; /* Center the container */
         }
-        .button-container button {
-            min-width: 100px;
-            padding: 15px;
+        .my-button {
+            font-size: 30px; /* Increased font size for larger buttons */
+            color: white; /* Text color */
+            background-color: #007BFF; /* Bootstrap primary color */
+            border: none; /* No border */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.2s; /* Transition effect */
+            width: 100%; /* Full width of the grid cell */
+            height: 100%; /* Full height of the grid cell */
+            padding: 20px; /* Increased padding for larger button */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
         }
-        .straight { grid-area: straight; }
-        .left { grid-area: left; }
-        .reverse { grid-area: reverse; }
-        .right { grid-area: right; }
+        .my-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slightly lift button on hover */
+        }
     </style>
 </head>
 <body>
@@ -62,10 +71,16 @@
     <button id="connectButton">Connect to COM Port</button>
 
     <div class="button-container">
-        <button class="sendButton straight" data-value="w">Straight</button>
-        <button class="sendButton left" data-value="a">Left</button>
-        <button class="sendButton reverse" data-value="s">Reverse</button>
-        <button class="sendButton right" data-value="d">Right</button>
+        <div></div> <!-- Spacer for top alignment -->
+        <button class="sendButton my-button" data-value="w">Straight</button> <!-- Top button -->
+        <div></div> <!-- Spacer for top alignment -->
+        <button class="sendButton my-button" data-value="a">Left</button> <!-- Left button -->
+        <div></div> <!-- Spacer for top alignment -->
+        <button class="sendButton my-button" data-value="d">Right</button> <!-- Center button -->
+        <div></div> <!-- Spacer for top alignment -->
+        <button class="sendButton my-button" data-value="s">Reverse</button> <!-- Right button -->
+        <div></div> <!-- Spacer for bottom alignment -->
+        <div></div> <!-- Spacer for bottom alignment -->
     </div>
 
     <script src="BtControl.js"></script>
