@@ -7,18 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #000000;
             margin: 0;
             padding: 20px;
             color: #333;
         }
         h1 {
             text-align: center;
-            color: #4a4a4a;
+            color: #ffffff;
         }
         #status {
             text-align: center;
             font-size: 18px;
+            color: #ffffff;
             margin: 20px 0;
         }
         #connectButton {
@@ -68,17 +69,17 @@
 
     <h1>Control Through Website</h1>
     <p id="status"><strong><i>Status: Disconnected</i></strong></p>
-    <button id="connectButton">Connect to COM Port</button>
+    <button id="connectButton"><i>Connect to Port</i></button>
 
     <div class="button-container">
         <div></div> <!-- Spacer for top alignment -->
-        <button class="sendButton my-button" data-value="w">Straight</button> <!-- Top button -->
+        <button class="sendButton my-button" data-value="w"><i>Straight</i></button> <!-- Top button -->
         <div></div> <!-- Spacer for top alignment -->
-        <button class="sendButton my-button" data-value="a">Left</button> <!-- Left button -->
+        <button class="sendButton my-button" data-value="a"><i>Left</i></button> <!-- Left button -->
         <div></div> <!-- Spacer for top alignment -->
-        <button class="sendButton my-button" data-value="d">Right</button> <!-- Center button -->
+        <button class="sendButton my-button" data-value="d"><i>Right</i></button> <!-- Center button -->
         <div></div> <!-- Spacer for top alignment -->
-        <button class="sendButton my-button" data-value="s">Reverse</button> <!-- Right button -->
+        <button class="sendButton my-button" data-value="s"><i>Reverse</i></button> <!-- Right button -->
         <div></div> <!-- Spacer for bottom alignment -->
         <div></div> <!-- Spacer for bottom alignment -->
     </div>

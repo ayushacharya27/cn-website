@@ -6,7 +6,8 @@ document.getElementById('connectButton').addEventListener('click', async () => {
     try {
         port = await navigator.serial.requestPort();
         await port.open({ baudRate: 9600 });
-        document.getElementById('status').textContent = 'Connected to the COM port!';
+        document.getElementById('status').innerHTML = '<strong><i>Connected to the COM port!</i></strong>';
+
 
         // Start sending default "n" when connected
         startDefaultSending();
@@ -20,7 +21,7 @@ document.getElementById('connectButton').addEventListener('click', async () => {
 
     } catch (error) {
         console.error('Error connecting to the serial port:', error);
-        document.getElementById('status').textContent = 'Failed to connect to the COM port.';
+        document.getElementById('status').innerHTML = '<strong><i>Failed to connect to the COM port.</i></strong>';
     }
 });
 
@@ -51,14 +52,27 @@ async function sendData(data) {
     const writer = port.writable.getWriter();
     try {
         await writer.write(encoder.encode(data + '\n'));
-        document.getElementById('status').textContent = `Sent: "${data}"`;
+
+        // Check the sent data and update the status accordingly
+        if (data === 'n') {
+            document.getElementById('status').innerHTML = '<strong><i>Status: Car is Not Moving</i></strong>';
+        } else if (data === 'w') {
+            document.getElementById('status').innerHTML = '<strong><i>Status: Car is Moving Forward</i></strong>';
+        } else if (data === 'a') {
+            document.getElementById('status').innerHTML = '<strong><i>Status: Car is Turning Left</i></strong>';
+        } else if (data === 'd') {
+            document.getElementById('status').innerHTML = '<strong><i>Status: Car is Turning Right</i></strong>';
+        } else if (data === 's') {
+            document.getElementById('status').innerHTML = '<strong><i>Status: Car is Moving Backward</i></strong>';
+        }
     } catch (error) {
         console.error('Error writing to serial port:', error);
-        document.getElementById('status').textContent = 'Failed to send data.';
+        document.getElementById('status').innerHTML = '<strong><i>Failed to send data.</i></strong>'; // Error message
     } finally {
         writer.releaseLock(); // Release the lock after writing
     }
 }
+
 
 function startDefaultSending() {
     if (!port) return; // If not connected, do nothing

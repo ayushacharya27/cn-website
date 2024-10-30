@@ -9,7 +9,8 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0; /* Remove default margin */
-            background-color: #f4f4f4;
+            background-color: #000; /* Set background color to black */
+            color: #fff; /* Set text color to white */
             height: 100vh; /* Full viewport height */
             display: flex;
             flex-direction: column; /* Arrange children vertically */
@@ -26,7 +27,7 @@
             width: 800px;
             height: 800px; /* Corrected height property */
             overflow: hidden;
-            border: 1px solid #ccc;
+            border: 1px solid #ccc; /* Light border for photo */
             border-radius: 5px;
         }
         .photo img {
@@ -59,7 +60,6 @@
     <div id="photos"></div> <!-- Container for displaying photos -->
     <div class="container">
         <button id="deleteButton" class="my-button">Delete History</button>
-
     </div>
 </body>
 </html>
