@@ -34,15 +34,14 @@ async function DeleteAll() {
     }
 }
 
-// Function to fetch the latest photo from Firebase Storage
-async function fetchLatestPhoto() {
+// Function to fetch the latest photo from the 'snapshots' folder
+async function fetchLatestSnapshotPhoto() {
     const storageRef = ref(storage, 'snapshots/'); // Reference to the 'snapshots' folder
     const result = await listAll(storageRef); // List all items in the folder
     const photoContainer = document.getElementById('photos');
     photoContainer.innerHTML = ''; // Clear previous photos
 
     if (result.items.length > 0) {
-        // Get the download URL for the last uploaded item (assuming the latest photo is the last in the list)
         const latestPhotoItem = result.items[result.items.length - 1];
         const url = await getDownloadURL(latestPhotoItem); // Get the download URL for the latest photo
 
@@ -53,7 +52,29 @@ async function fetchLatestPhoto() {
         photoDiv.appendChild(img); // Add the image to the photo div
         photoContainer.appendChild(photoDiv); // Add the photo div to the container
     } else {
-        console.log("No photos available");
+        console.log("No photos available in snapshots.");
+    }
+}
+
+// Function to fetch the latest photo from the 'danger' folder
+async function fetchLatestDangerPhoto() {
+    const storageRef = ref(storage, 'danger/'); // Reference to the 'danger' folder
+    const result = await listAll(storageRef); // List all items in the folder
+    const photoContainer = document.getElementById('model');
+    photoContainer.innerHTML = ''; // Clear previous photos
+
+    if (result.items.length > 0) {
+        const latestPhotoItem = result.items[result.items.length - 1];
+        const url = await getDownloadURL(latestPhotoItem); // Get the download URL for the latest photo
+
+        const photoDiv = document.createElement('div');
+        photoDiv.className = 'photo1';
+        const img = document.createElement('img');
+        img.src = url; // Set the image source to the latest photo URL
+        photoDiv.appendChild(img); // Add the image to the photo div
+        photoContainer.appendChild(photoDiv); // Add the photo div to the container
+    } else {
+        console.log("No photos available in danger.");
     }
 }
 
@@ -64,8 +85,13 @@ function setupButton() {
 }
 
 // Fetch photos every 10 seconds
-setInterval(fetchLatestPhoto, 10000); // Fetch the latest photo every 10 seconds
+setInterval(() => {
+    fetchLatestSnapshotPhoto(); // Fetch the latest photo from snapshots
+    fetchLatestDangerPhoto(); // Fetch the latest photo from danger
+}, 10000); // Fetch both every 10 seconds
+
 document.addEventListener('DOMContentLoaded', () => {
-    fetchLatestPhoto(); // Fetch the latest photo on page load
+    fetchLatestSnapshotPhoto(); // Fetch the latest photo from snapshots on page load
+    fetchLatestDangerPhoto(); // Fetch the latest photo from danger on page load
     setupButton(); // Setup the delete button
 });

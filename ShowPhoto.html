@@ -1,65 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realtime Monitoring</title>
-    <script src="ShowPhoto.js" type="module" defer></script> <!-- Ensure the script is treated as a module -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0; /* Remove default margin */
-            background-color: #000; /* Set background color to black */
-            color: #fff; /* Set text color to white */
-            height: 100vh; /* Full viewport height */
-            display: flex;
-            flex-direction: column; /* Arrange children vertically */
-        }
-        #photos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            flex-grow: 1; /* Take up remaining space */
-            overflow-y: auto; /* Allow vertical scrolling if needed */
-            padding: 20px; /* Optional padding */
-        }
-        .photo {
-            width: 800px;
-            height: 800px; /* Corrected height property */
-            overflow: hidden;
-            border: 1px solid #ccc; /* Light border for photo */
-            border-radius: 5px;
-        }
-        .photo img {
-            width: 100%;
-            height: auto;
-        }
-        .container {
-            padding: 20px; /* Optional padding */
-        }
-        .my-button {
-            font-size: 22px; /* Font size */
-            color: white; /* Text color */
-            background-color: #007BFF; /* Bootstrap primary color */
-            border: none; /* No border */
-            border-radius: 8px; /* Rounded corners */
-            cursor: pointer; /* Pointer cursor on hover */
-            transition: background-color 0.3s, transform 0.2s; /* Transition effect */
-            width: 20%; /* Full width of the grid cell */
-            height: 60px; /* Set a specific height for the button */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
-        }
-        .my-button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-            transform: translateY(-2px); /* Slightly lift button on hover */
-        }
-    </style>
-</head>
-<body>
-    <h1><strong><i>Realtime Monitoring</i></strong></h1>
-    <div id="photos"></div> <!-- Container for displaying photos -->
-    <div class="container">
-        <button id="deleteButton" class="my-button">Delete History</button>
-    </div>
-</body>
-</html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Realtime Monitoring</title>
+        <script src="ShowPhoto.js" type="module" defer></script> <!-- Ensure the script is treated as a module -->
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0; /* Remove default margin */
+                background-color: #000; /* Set background color to black */
+                color: #fff; /* Set text color to white */
+            }
+            .header {
+                display: flex; /* Use flexbox for header layout */
+                justify-content: space-between; /* Space between elements */
+                padding: 20px; /* Padding for header */
+            }
+            .monitor1 {
+                font-size: 24px; /* Font size for headings */
+                margin-left: 240px;
+                
+
+            }
+            .monitor2 {
+                font-size: 24px; /* Font size for headings */
+                margin-right: 320px; /* Align this heading with the model container */
+            }
+            .main-container {
+                display: flex; /* Use flexbox for side-by-side layout */
+                flex-grow: 1; /* Allow container to grow */
+                padding: 20px; /* Optional padding */
+                gap: 20px; /* Space between containers */
+            }
+            #photos, #model {
+                width: 700px; /* Set width to match photo */
+                height: 527px; /* Set height to match photo */
+                border: 1px solid #333; /* Border for containers */
+                border-radius: 10px; /* Rounded corners */
+                overflow-y: auto; /* Allow vertical scrolling */
+                display: flex; /* Use flexbox for inner layout */
+                flex-direction: column; /* Stack children vertically */
+            }
+            .photo {
+                flex-grow: 1; /* Allow photo to grow and fill space */
+                overflow: hidden; /* Hide overflow */
+                border: 1px solid #ccc; /* Light border for photo */
+                border-radius: 5px;
+                display: flex; /* Use flexbox for image layout */
+                justify-content: center; /* Center image horizontally */
+                align-items: center; /* Center image vertically */
+            }
+            .photo img {
+                max-width: 100%; /* Keep image within bounds */
+                max-height: 100%; /* Keep image within bounds */
+            }
+            .photo1 {
+                flex-grow: 1; /* Allow photo to grow and fill space */
+                overflow: hidden; /* Hide overflow */
+                border: 1px solid #ccc; /* Light border for photo */
+                border-radius: 5px;
+                display: flex; /* Use flexbox for image layout */
+                justify-content: center; /* Center image horizontally */
+                align-items: center; /* Center image vertically */
+            }
+            .photo1 img {
+                max-width: 100%; /* Keep image within bounds */
+                max-height: 100%; /* Keep image within bounds */
+            }
+            .container {
+                width: 600px;
+                padding: 20px; /* Optional padding */
+                display: flex; /* Use flexbox for inner layout */
+                flex-direction: column; /* Stack children vertically */
+                justify-content: flex-end; /* Align button to bottom */
+                height: 100%; /* Fill the container */
+            }
+            .my-button {
+                font-size: 22px; /* Font size */
+                color: white; /* Text color */
+                background-color: #007BFF; /* Bootstrap primary color */
+                border: none; /* No border */
+                border-radius: 8px; /* Rounded corners */
+                cursor: pointer; /* Pointer cursor on hover */
+                transition: background-color 0.3s, transform 0.2s; /* Transition effect */
+                width: 100%; /* Full width of the button */
+                height: 60px; /* Set a specific height for the button */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
+            }
+            .my-button:hover {
+                background-color: #0056b3; /* Darker blue on hover */
+                transform: translateY(-2px); /* Slightly lift button on hover */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="monitor1"><strong><i>Realtime Monitoring</i></strong></h1>
+            <h1 class="monitor2"><strong><i>Threat Monitoring</i></strong></h1>
+        </div>
+        <div class="main-container">
+            <div id="photos">
+                <div class="photo">
+                    <!-- Image will be dynamically loaded here -->
+                </div>
+            </div> <!-- Photos container -->
+            <div id="model">
+                <div class="photo1">
+                    <!-- Image will be dynamically loaded here -->
+                </div>
+
+                <!-- Add your model content here -->
+            </div> <!-- Model container -->
+        </div>
+        <div class="container">     
+            <button id="deleteButton" class="my-button">Delete History</button>
+        </div>
+    </body>
+    </html>
