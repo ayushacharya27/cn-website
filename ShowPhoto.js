@@ -88,7 +88,7 @@ function setupButton() {
 setInterval(() => {
     fetchLatestSnapshotPhoto(); // Fetch the latest photo from snapshots
     fetchLatestDangerPhoto(); // Fetch the latest photo from danger
-}, 10000); // Fetch both every 10 seconds
+}, 5000); // Fetch both every 5 seconds
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchLatestSnapshotPhoto(); // Fetch the latest photo from snapshots on page load
