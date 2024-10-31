@@ -84,7 +84,7 @@ function setupButton() {
     deleteButton.addEventListener('click', DeleteAll);
 }
 
-// Fetch photos every 10 seconds
+// Fetch photos every 5 seconds
 setInterval(() => {
     fetchLatestSnapshotPhoto(); // Fetch the latest photo from snapshots
     fetchLatestDangerPhoto(); // Fetch the latest photo from danger
