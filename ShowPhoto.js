@@ -83,6 +83,12 @@ function setupButton() {
     const deleteButton = document.getElementById('deleteButton');
     deleteButton.addEventListener('click', DeleteAll);
 }
+function setupStorageButton() {
+    const storageButton = document.getElementById('storage');
+    storageButton.addEventListener('click', () => {
+        window.location.href = "https://console.firebase.google.com/u/3/project/computernetowrk-d0548/storage/computernetowrk-d0548.appspot.com/files"; // Replace with your storage page URL
+    });
+}
 
 // Fetch photos every 5 seconds
 setInterval(() => {
@@ -94,4 +100,5 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchLatestSnapshotPhoto(); // Fetch the latest photo from snapshots on page load
     fetchLatestDangerPhoto(); // Fetch the latest photo from danger on page load
     setupButton(); // Setup the delete button
+    setupStorageButton(); // Setup the 'Go To Storage' button
 });

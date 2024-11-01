@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Realtime Monitoring</title>
-        <script src="ShowPhoto.js" type="module" defer></script> <!-- Ensure the script is treated as a module -->
+        <script src="ShowPhoto.js" type="module" defer></script>
+          <!-- Ensure the script is treated as a module -->
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -68,30 +69,49 @@
                 max-width: 100%; /* Keep image within bounds */
                 max-height: 100%; /* Keep image within bounds */
             }
-            .container {
-                width: 600px;
-                padding: 20px; /* Optional padding */
-                display: flex; /* Use flexbox for inner layout */
-                flex-direction: column; /* Stack children vertically */
-                justify-content: flex-end; /* Align button to bottom */
-                height: 100%; /* Fill the container */
-            }
-            .my-button {
-                font-size: 22px; /* Font size */
-                color: white; /* Text color */
-                background-color: #007BFF; /* Bootstrap primary color */
-                border: none; /* No border */
-                border-radius: 8px; /* Rounded corners */
-                cursor: pointer; /* Pointer cursor on hover */
-                transition: background-color 0.3s, transform 0.2s; /* Transition effect */
-                width: 100%; /* Full width of the button */
-                height: 60px; /* Set a specific height for the button */
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
-            }
-            .my-button:hover {
-                background-color: #0056b3; /* Darker blue on hover */
-                transform: translateY(-2px); /* Slightly lift button on hover */
-            }
+            .button-container {
+            display: flex; /* Flex layout to make buttons side by side */
+            gap: 20px; /* Space between buttons */
+            padding: 20px;
+        }
+        .my-button {
+        font-size: 22px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        width: 90%; /* Set to a smaller width */
+        height: 60px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    /* Leave .my-button1 with a full width */
+    .my-button1 {
+        margin-right: 49px;
+        font-size: 22px;
+        color: white;
+        background-color: #28a745;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        width: 90%; /* Full width */
+        height: 60px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+        .my-button1 {
+            background-color: #28a745; /* Different color for the second button */
+        }
+        .my-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .my-button1:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        
         </style>
     </head>
     <body>
@@ -109,12 +129,19 @@
                 <div class="photo1">
                     <!-- Image will be dynamically loaded here -->
                 </div>
+                
 
                 <!-- Add your model content here -->
-            </div> <!-- Model container -->
+            </div>
+             <!-- Model container -->
         </div>
-        <div class="container">     
+        <div class="button-container">     
             <button id="deleteButton" class="my-button">Delete History</button>
-        </div>
+        
+            
+             
+                <button id="storage" class="my-button1">Go To Storage</button>
+             
+            </div>
     </body>
     </html>
