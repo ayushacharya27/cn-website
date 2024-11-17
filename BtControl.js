@@ -24,6 +24,11 @@ document.getElementById('connectButton').addEventListener('click', async () => {
         document.getElementById('status').innerHTML = '<strong><i>Failed to connect to the COM port.</i></strong>';
     }
 });
+document.getElementById("go-back").addEventListener("click", function () {
+    // Replace 'previousPage.html' with the path to your desired HTML file
+    window.location.href = "./Home.html";
+});
+
 
 function startSendingKey(event) {
     if (!port) return; // If not connected, do nothing

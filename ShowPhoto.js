@@ -33,6 +33,11 @@ async function DeleteAll() {
         alert("Error deleting files: " + error.message);
     }
 }
+document.getElementById("go-back").addEventListener("click", function () {
+    // Replace 'previousPage.html' with the path to your desired HTML file
+    window.location.href = "./Home.html";
+    });
+
 
 // Function to fetch the latest photo from the 'snapshots' folder
 async function fetchLatestSnapshotPhoto() {

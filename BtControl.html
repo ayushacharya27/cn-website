@@ -37,6 +37,25 @@
         #connectButton:hover {
             background-color: #0056b3;
         }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .back-button button {
+            background-color: #6c757d; /* Bootstrap secondary color */
+            color: white;
+            border: none;
+            background-color: #007BFF;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .back-button button:hover {
+            background-color: #5a6268;
+        }
         .button-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr); /* Three columns for the WASD layout */
@@ -70,6 +89,9 @@
     <h1>Control Through Website</h1>
     <p id="status"><strong><i>Status: Disconnected</i></strong></p>
     <button id="connectButton"><i>Connect to Port</i></button>
+    <div class = "back-button">
+        <button id = "go-back">Back</button>
+    </div>
 
     <div class="button-container">
         <div></div> <!-- Spacer for top alignment -->
